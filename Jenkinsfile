@@ -1,9 +1,11 @@
 pipeline {
-// environment {
+environment {
 // registry = "https://hub.docker.com/repository/docker/rajat013/test"
 // registryCredential = 'dockerhub_cred'
 // dockerImage = ''
-//}
+//
+   app= ''
+}
 agent any
 def app
 stages {
