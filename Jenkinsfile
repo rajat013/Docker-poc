@@ -3,7 +3,7 @@ pipeline {
 // registry = "https://hub.docker.com/repository/docker/rajat013/test"
 // registryCredential = 'dockerhub_cred'
 // dockerImage = ''
-}
+//}
 agent any
 def app
 stages {
