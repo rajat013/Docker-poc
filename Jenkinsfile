@@ -1,23 +1,25 @@
 pipeline {
-environment {
-registry = "https://hub.docker.com/repository/docker/rajat013/test"
-registryCredential = 'dockerhub_cred'
-dockerImage = ''
+// environment {
+// registry = "https://hub.docker.com/repository/docker/rajat013/test"
+// registryCredential = 'dockerhub_cred'
+// dockerImage = ''
 }
 agent any
+def app
 stages {
 stage('Building our image') {
 steps{
 script {
-dockerImage = docker.build registry + ":$BUILD_NUMBER"
+app = docker.build("rajat013/test")
 }
 }
 }
 stage('Deploy our image') {
 steps{
 script {
-docker.withRegistry( '', registryCredential ) {
-dockerImage.push()
+docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_cred') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
 }
 }
 }
