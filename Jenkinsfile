@@ -7,7 +7,6 @@ environment {
    app= ''
 }
 agent any
-def app
 stages {
 stage('Building our image') {
 steps{
