@@ -12,7 +12,7 @@ FROM ubuntu:latest
 
 #
 # Identify the maintainer of an image
-LABEL maintainer="myname@somecompany.com"
+LABEL maintainer="rajat"
 
 #
 # Update the image to the latest packages
