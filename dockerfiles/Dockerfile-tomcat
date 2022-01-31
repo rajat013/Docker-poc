@@ -1,31 +1,12 @@
-#
-# Each instruction in this file generates a new layer that gets pushed to your local image cache
-#
+FROM openjdk:16-alpine3.13
 
-#
-# Lines preceeded by # are regarded as comments and ignored
-#
+WORKDIR /app
 
-#
-# The line below states we will base our new image on the Latest Official Ubuntu 
-FROM ubuntu:latest
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
 
-#
-# Identify the maintainer of an image
-LABEL maintainer="rajat"
+COPY src ./src
 
-#
-# Update the image to the latest packages
-RUN apt-get update && apt-get upgrade -y
-
-#
-# Install tomcat to test.
-RUN apt-get install tomcat -y
-
-#
-# Expose port 80
-EXPOSE 80
-
-#
-# Last is the actual command to start up NGINX within our Container
+CMD ["./mvnw", "spring-boot:run"]
 
