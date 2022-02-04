@@ -16,6 +16,12 @@ app = docker.build("rajat013/test")
 }
 }
 stage('Deploy our image') {
+   when {
+      expression {
+      
+         return ${params.PUSH_IMAGE}
+      }
+   }
 steps{
 script {
 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_cred') {
