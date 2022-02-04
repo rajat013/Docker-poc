@@ -11,8 +11,9 @@ stages {
 stage('Building our image') {
 steps{
 script {
+    echo " ${params.PUSH_IMAGE}"
 app = docker.build("rajat013/test")
-   echo " ${params.PUSH_IMAGE}"
+ 
 }
 }
 }
